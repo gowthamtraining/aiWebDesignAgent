@@ -23,7 +23,10 @@ export default function SignInPage() {
 
   return (
     <div className="flex items-center justify-center min-vh-screen py-12 px-4 sm:px-6 lg:px-8">
-      <SignIn signUpUrl="/auth/sign-up" forgotPasswordUrl="/auth/forgot-password" />
+      <SignIn
+        signUpUrl="/auth/sign-up"
+        forgotPasswordUrl="/auth/forgot-password"
+      />
     </div>
   );
 }
