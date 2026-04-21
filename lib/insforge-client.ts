@@ -3,11 +3,6 @@ import { createClient } from '@insforge/sdk';
 export const insforge = createClient({
   baseUrl: process.env.NEXT_PUBLIC_INSFORGE_BASE_URL!,
   anonKey: process.env.NEXT_PUBLIC_INSFORGE_ANON_KEY!,
-  auth: {
-    persistSession: true,
-    storageKey: 'insforge-session'
-  },
-  debug: true
 });
 
 // Persistence wrapper for localStorage
@@ -23,10 +18,9 @@ if (typeof window !== 'undefined') {
       insforge.tokenManager.saveSession(session);
       // @ts-ignore - access internal http client
       insforge.http.setAuthToken(session.accessToken);
-      console.log('[InsForge] Restored session from localStorage');
     }
   } catch (e) {
-    console.error('[InsForge] Failed to restore session:', e);
+    // Silently ignore restore errors
   }
 
   // 2. Subscribe to changes

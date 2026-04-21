@@ -7,7 +7,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { InsforgeProvider } from "@/components/insforge-provider";
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { QueryProvider } from "@/components/query-provider";
-import { getAuthFromCookies } from "@insforge/nextjs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,8 +28,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const authData = await getAuthFromCookies();
-
   return (
     <html
       lang="en"
@@ -38,7 +35,7 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <InsforgeProvider initialAuth={authData}>
+        <InsforgeProvider>
           <QueryProvider>
             <NuqsAdapter>
               <ThemeProvider

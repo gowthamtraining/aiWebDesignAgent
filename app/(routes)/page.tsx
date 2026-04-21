@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
+import { Suspense } from "react";
 import ChartInterface from "@/components/Chat";
 
 export default function Home() {
   return (
-    <div>
+    <Suspense>
       <ChartInterface />
-    </div>
+    </Suspense>
   );
 }
